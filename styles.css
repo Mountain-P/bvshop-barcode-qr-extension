@@ -1,0 +1,177 @@
+/* BVSHOP product-list modal */
+#bvshop-qr-option {
+  margin: 3px;
+}
+
+#bvshop-qr-option .bvshop-qr-option-body {
+  display: block;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.bvshop-qr-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0;
+  cursor: pointer;
+  color: #26266f;
+}
+
+.bvshop-qr-label input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.bvshop-qr-checkbox {
+  position: relative;
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #3434c7;
+  border-radius: 4px;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.bvshop-qr-label input:checked + .bvshop-qr-checkbox {
+  background: #3434c7;
+}
+
+.bvshop-qr-label input:checked + .bvshop-qr-checkbox::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 1px;
+  width: 6px;
+  height: 11px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.bvshop-qr-label input:focus-visible + .bvshop-qr-checkbox {
+  outline: 3px solid rgba(52, 52, 199, 0.25);
+  outline-offset: 2px;
+}
+
+.bvshop-qr-label strong,
+.bvshop-qr-label small {
+  display: block;
+}
+
+.bvshop-qr-label strong {
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.bvshop-qr-label small {
+  margin-top: 3px;
+  color: #62627a;
+  font-size: 12px;
+  line-height: 17px;
+}
+
+.bvshop-qr-status {
+  margin: 8px 0 0 30px;
+  font-size: 12px;
+  line-height: 17px;
+}
+
+.bvshop-qr-status[data-state="ok"] {
+  color: #177548;
+}
+
+.bvshop-qr-status[data-state="warning"] {
+  color: #a45700;
+}
+
+.bvshop-qr-status[data-state="off"],
+.bvshop-qr-status[data-state="pending"] {
+  color: #666;
+}
+
+/* BVSHOP barcode print page */
+.print_sample .spec_barcode.bvshop-barcode-with-qr {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 9.5mm !important;
+  align-items: center !important;
+  gap: 0.7mm !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  height: 11mm !important;
+  overflow: visible !important;
+}
+
+.bvshop-barcode-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 0;
+  width: 100%;
+  height: 10mm;
+  overflow: hidden;
+  text-align: center;
+}
+
+.print_sample .bvshop-barcode-content img[alt="barcode"] {
+  display: block;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 8mm !important;
+  min-height: 8mm !important;
+  object-fit: fill;
+}
+
+.bvshop-barcode-content b {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  font-size: 8px;
+  line-height: 2mm;
+  text-overflow: clip;
+  white-space: nowrap;
+}
+
+.bvshop-qr-code {
+  width: 9.5mm;
+  height: 9.5mm;
+  overflow: hidden;
+  background: #fff;
+}
+
+.bvshop-qr-code svg {
+  display: block;
+  width: 9.5mm !important;
+  height: 9.5mm !important;
+}
+
+.bvshop-qr-print-notice {
+  display: inline-block;
+  margin: 8px;
+  padding: 7px 10px;
+  border: 1px solid;
+  border-radius: 6px;
+  font: 13px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.bvshop-qr-print-notice.is-ok {
+  border-color: #8fd0ad;
+  background: #ecfbf3;
+  color: #12643d;
+}
+
+.bvshop-qr-print-notice.is-warning {
+  border-color: #efbd76;
+  background: #fff7e8;
+  color: #8c4f00;
+}
+
+@media print {
+  .bvshop-qr-print-notice {
+    display: none !important;
+  }
+}

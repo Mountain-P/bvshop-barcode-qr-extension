@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "BVSHOP 條碼＋商品 QR Code",
+  "version": "1.0.0",
+  "description": "在 BVSHOP 原有的商品條碼旁加入商品網站 QR Code。",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://bvshop-manage.bvshop.tw/*"
+  ],
+  "action": {
+    "default_title": "BVSHOP 條碼＋QR",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://bvshop-manage.bvshop.tw/*"
+      ],
+      "js": [
+        "vendor/qrcode-generator.js",
+        "content.js"
+      ],
+      "css": [
+        "styles.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
