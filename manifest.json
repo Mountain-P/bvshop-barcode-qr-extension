@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "BVSHOP 條碼＋商品 QR Code",
-  "version": "1.0.0",
-  "description": "在 BVSHOP 原有的商品條碼旁加入商品網站 QR Code。",
+  "version": "2.0.0",
+  "description": "為 BVSHOP 商品設計並列印包含條碼與商品 QR Code 的自訂標籤。",
   "permissions": [
     "storage"
   ],
@@ -12,6 +12,9 @@
   "action": {
     "default_title": "BVSHOP 條碼＋QR",
     "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
   },
   "content_scripts": [
     {

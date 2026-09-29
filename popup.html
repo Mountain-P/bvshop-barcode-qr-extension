@@ -28,19 +28,32 @@
       }
       .ok { color: #177548; }
       .muted { color: #6b6b7f; }
+      button {
+        width: 100%;
+        margin-top: 12px;
+        padding: 10px 12px;
+        border: 0;
+        border-radius: 8px;
+        background: #3434c7;
+        color: #fff;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      button:hover { background: #2727a7; }
     </style>
   </head>
   <body>
     <main>
       <h1>BVSHOP 條碼＋商品 QR</h1>
-      <p>延用 BVSHOP 原本的條碼列印流程，只在標籤右側加入商品頁 QR Code。</p>
+      <p>讀取 BVSHOP 商品資料，使用自訂版型設計並列印條碼與商品 QR Code。</p>
       <ol>
         <li>開啟 BVSHOP「商品列表」</li>
         <li>點商品的「列印條碼」</li>
-        <li>保持「加入商品頁 QR Code」勾選</li>
-        <li>照常設定數量並列印</li>
+        <li>設定各規格列印數量</li>
+        <li>開啟設計器排版與列印</li>
       </ol>
       <div id="status" class="status muted">尚未讀取列印資料。</div>
+      <button id="open-designer" type="button">開啟標籤版型設計器</button>
     </main>
     <script src="popup.js"></script>
   </body>

@@ -90,9 +90,15 @@
       const heading = group.previousElementSibling;
       const rows = [...group.querySelectorAll("tbody tr")].map((row) => {
         const cells = row.querySelectorAll("td");
+        const quantityInput = cells[5]?.querySelector('input[type="number"]');
+        const parsedQuantity = Number.parseInt(quantityInput?.value || "1", 10);
         return {
           variant: normalize(cells[0]?.textContent),
           barcode: normalize(cells[1]?.textContent),
+          stock: normalize(cells[2]?.textContent),
+          price: normalize(cells[3]?.textContent),
+          specialPrice: normalize(cells[4]?.textContent),
+          printQty: Math.min(100, Math.max(0, Number.isFinite(parsedQuantity) ? parsedQuantity : 1)),
         };
       });
 
@@ -165,6 +171,9 @@
           </span>
         </label>
         <div id="bvshop-qr-status" class="bvshop-qr-status" data-state="pending">等待讀取商品資料…</div>
+        <button id="bvshop-open-designer" class="bvshop-designer-button" type="button">
+          開啟標籤版型設計器
+        </button>
       </div>
     `;
 
@@ -183,6 +192,11 @@
 
     option.querySelector("#bvshop-qr-toggle")?.addEventListener("change", () => {
       void savePendingFromModal();
+    });
+
+    option.querySelector("#bvshop-open-designer")?.addEventListener("click", async () => {
+      await savePendingFromModal();
+      chrome.runtime.sendMessage({ type: "OPEN_DESIGNER" });
     });
 
     await savePendingFromModal();

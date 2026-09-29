@@ -1,17 +1,23 @@
-# BVSHOP 條碼＋商品 QR Code
+# BVSHOP Barcode Studio
 
-在 BVSHOP 原有的商品條碼旁，自動加入對應的商品網站 QR Code。
+為 BVSHOP 商品設計、儲存並列印包含條碼與商品 QR Code 的自訂標籤。
 
-這是一個輕量的 Chrome Extension，會保留 BVSHOP 原本的多規格、列印張數、條碼樣式與標籤尺寸設定。QR Code 全程在瀏覽器本機產生，不會把商品資料傳送給第三方服務。
+擴充套件會從 BVSHOP 原有的「列印條碼」視窗讀取商品名稱、規格、價格、條碼、列印數量與商品網址，再交給獨立的版型設計器處理。條碼與 QR Code 都在瀏覽器本機產生，不會把商品資料傳送給第三方服務。
+
+![BVSHOP 標籤版型設計器](docs/designer-preview.png)
 
 ## 主要功能
 
-- 在 BVSHOP「列印條碼」視窗加入「商品 QR Code」選項
-- 自動取得商品卡上的「商品頁面」網址
-- 將商品 QR Code 排在原條碼右側
-- 支援單一商品、多規格商品與批量列印
-- 支援 BVSHOP 原有的 40×30mm、40×25mm、Brother 42×29mm 選項
-- 取消勾選後，保留 BVSHOP 原始列印版面
+- 拖曳商品名稱、規格、售價、特價、條碼、QR Code 與自訂文字
+- 拖曳右下角控制點調整每個元件的尺寸
+- 設定元件的 X／Y 位置、寬度及高度（mm）
+- 設定字體、字級、字重與文字對齊
+- 40×30mm、40×25mm、Brother 42×29mm 及自訂標籤尺寸
+- 即時切換不同商品規格預覽
+- 個別調整每個規格的列印數量
+- 儲存多套版型，並以 JSON 匯入／匯出
+- 由插件直接產生 CODE128 條碼與商品 QR Code
+- 保留原有的「BVSHOP 條碼＋QR」快速列印模式
 
 ## 下載
 
@@ -25,56 +31,57 @@
 4. 點「載入未封裝項目」。
 5. 選擇解壓縮後的 `bvshop-barcode-qr-extension` 資料夾。
 
-完整步驟與疑難排解請看：[安裝教學.md](安裝教學.md)
+完整步驟請看：[安裝與版型設計教學](安裝教學.md)
 
-## 使用方式
+## 使用版型設計器
 
 1. 開啟 BVSHOP 後台的「商品列表」。
 2. 點商品的「列印條碼」。
-3. 保持「在條碼右側加入商品頁 QR Code」勾選。
-4. 照常選擇標籤尺寸、樣式及列印數量，再點「列印」。
-5. 新開的列印頁會提示已加入 QR Code；確認預覽後，再按頁面上的「列印」。
+3. 設定各規格的列印數量。
+4. 點「開啟標籤版型設計器」。
+5. 在畫布上拖曳、縮放元件，並在右側設定字體與尺寸。
+6. 視需要儲存版型。
+7. 點右上角「列印標籤」。
 
-若不想印 QR Code，在 BVSHOP 的列印條碼視窗取消勾選即可。
+也可以點 Chrome 工具列上的擴充套件圖示，重新開啟設計器。設計器會讀取最近一次從 BVSHOP 取得的商品資料。
 
 ## 第一次正式列印前
 
-不同條碼機的可列印邊界與縮放設定不同，建議先印一張測試標籤：
+不同條碼機的可列印邊界與 DPI 不同，請先印一張測試標籤：
 
 - Chrome 列印縮放設為 `100%`
 - 邊界選擇「無」或印表機預設
-- 紙張尺寸與 BVSHOP 選擇的標籤尺寸一致
-- 用手機測試 QR Code
-- 用條碼掃描器測試原條碼
+- 紙張尺寸與設計器的標籤尺寸一致
+- 建議條碼寬度至少 20mm
+- 建議 QR Code 至少 8×8mm
+- 分別使用手機與條碼掃描器測試
 
 ## 隱私與權限
 
-擴充套件只在 `https://bvshop-manage.bvshop.tw/` 執行。它會讀取當前商品列表上的公開商品網址，並暫存在 Chrome 本機儲存空間最多 15 分鐘，供新開的列印頁使用。
+擴充套件只在 `https://bvshop-manage.bvshop.tw/` 執行，商品資料、暫存列印資料與自訂版型都只儲存在 Chrome 本機。
 
 擴充套件不會：
 
 - 讀取或保存 BVSHOP 帳號密碼
-- 呼叫第三方 QR Code API
+- 呼叫第三方條碼或 QR Code API
 - 將商品資料傳送到外部伺服器
 - 自動送出訂單或修改商品資料
 
-## 已知限制
-
-- BVSHOP 若大幅修改商品列表或條碼列印頁的 HTML 結構，擴充套件可能需要更新。
-- 若列印頁提示只有部分標籤加入 QR Code，請回到商品列表重新開啟「列印條碼」，並確認商品卡上存在「商品頁面」連結。
-
 ## 專案內容
 
-- `manifest.json`：Chrome Manifest V3 設定
-- `content.js`：商品網址配對與 QR Code 列印邏輯
-- `styles.css`：BVSHOP 視窗與標籤列印樣式
-- `popup.html`／`popup.js`：擴充套件狀態說明
+- `content.js`：讀取 BVSHOP 商品及列印資料
+- `designer.html`／`designer.css`／`designer.js`：版型設計、預覽與列印
+- `background.js`：開啟設計器頁面
+- `styles.css`：BVSHOP 列印視窗與快速列印樣式
+- `popup.html`／`popup.js`：擴充套件狀態與入口
 - `vendor/qrcode-generator.js`：本機 QR Code 產生器
+- `vendor/jsbarcode.all.min.js`：本機 CODE128 條碼產生器
 
 ## 第三方元件
 
-本專案包含 `qrcode-generator` 1.4.4（Kazuhiko Arase，MIT License）。完整授權資訊請見 [THIRD_PARTY_NOTICES.txt](THIRD_PARTY_NOTICES.txt)。
+本專案包含 `qrcode-generator` 1.4.4 與 `JsBarcode` 3.11.6，兩者皆採 MIT License。完整授權資訊請見 [THIRD_PARTY_NOTICES.txt](THIRD_PARTY_NOTICES.txt)。
 
 ## 版本
 
+- 2.0.0 — 新增完整標籤版型設計器
 - 1.0.0 — 首次公開版本

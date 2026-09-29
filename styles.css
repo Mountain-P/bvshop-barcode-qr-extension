@@ -93,6 +93,22 @@
   color: #666;
 }
 
+.bvshop-designer-button {
+  margin: 12px 0 0 30px;
+  padding: 9px 14px;
+  border: 0;
+  border-radius: 6px;
+  background: #3434c7;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.bvshop-designer-button:hover {
+  background: #2727a7;
+}
+
 /* BVSHOP barcode print page */
 .print_sample .spec_barcode.bvshop-barcode-with-qr {
   display: grid !important;
